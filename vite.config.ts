@@ -23,6 +23,16 @@ export default defineConfig({
   },
 
   plugins: [
+
+    {
+      name: 'configure-response-headers',
+      configureServer: (server) => {
+        server.middlewares.use((_req, res, next) => {
+          res.setHeader('Content-Encoding', 'compress')
+          next()
+        })
+      },
+    },
     Preview(),
 
     Vue({
